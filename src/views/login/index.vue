@@ -82,6 +82,7 @@
 import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
+import { loginBy } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -162,22 +163,8 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/' })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+      loginBy(this.loginForm)
+      console.log(loginBy)
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

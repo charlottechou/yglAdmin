@@ -1,11 +1,11 @@
-/** When your routing table is too long, you can split it into small modules**/
+/** When your routing table is too long, you can split it into small modules **/
 
 import Layout from '@/layout'
 
 const componentsRouter = {
   path: '/components',
   component: Layout,
-  redirect: 'noredirect',
+  redirect: 'noRedirect',
   name: 'ComponentDemo',
   meta: {
     title: 'components',

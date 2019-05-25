@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from '@/layout';
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+import componentsRouter from './modules/components';
+import chartsRouter from './modules/charts';
+import tableRouter from './modules/table';
+import nestedRouter from './modules/nested';
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -20,7 +20,7 @@ import nestedRouter from './modules/nested'
  * alwaysShow: true               if set true, will always show the root menu
  *                                if not set alwaysShow, when item has more than one children route,
  *                                it will becomes nested mode, otherwise not show the root menu
- * redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
+ * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
  * name:'router-name'             the name is used by <keep-alive> (must set!!!)
  * meta : {
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
@@ -79,7 +79,12 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard', noCache: true, affix: true }
+        meta: {
+          title: 'dashboard',
+          icon: 'dashboard',
+          noCache: true,
+          affix: true
+        }
       }
     ]
   },
@@ -118,8 +123,9 @@ export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/index',
+    redirect: '/permission/page',
     alwaysShow: true, // will always show the root menu
+    name: 'Permission',
     meta: {
       title: 'permission',
       icon: 'lock',
@@ -174,7 +180,102 @@ export const asyncRoutes = [
   chartsRouter,
   nestedRouter,
   tableRouter,
-
+  {
+    path: '/scenic',
+    component: Layout,
+    redirect: '/scenic/list',
+    name: 'scenic',
+    meta: {
+      title: '景点管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/scenic/create'),
+        name: 'CreateScenic',
+        meta: { title: '新增景点', icon: 'edit' }
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/scenic/list'),
+        name: 'ScenicList',
+        meta: { title: '景点列表', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/news',
+    component: Layout,
+    redirect: '/news/list',
+    name: 'news',
+    meta: {
+      title: '新闻管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/news/create'),
+        name: 'CreateNews',
+        meta: { title: '新增新闻', icon: 'edit' }
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/news/list'),
+        name: 'NewsList',
+        meta: { title: '新闻列表', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/food',
+    component: Layout,
+    redirect: '/food/list',
+    name: 'food',
+    meta: {
+      title: '美食管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/food/create'),
+        name: 'CreateFood',
+        meta: { title: '新增美食', icon: 'edit' }
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/food/list'),
+        name: 'FoodList',
+        meta: { title: '美食列表', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/tag',
+    component: Layout,
+    redirect: '/tag/list',
+    name: 'tag',
+    meta: {
+      title: '标签管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/tag/create'),
+        name: 'CreateTag',
+        meta: { title: '增加标签', icon: 'edit' }
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/tag/list'),
+        name: 'TagList',
+        meta: { title: '标签列表', icon: 'list' }
+      }
+    ]
+  },
   {
     path: '/example',
     component: Layout,
@@ -195,7 +296,11 @@ export const asyncRoutes = [
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'editArticle', noCache: true, activeMenu: '/example/list' },
+        meta: {
+          title: 'editArticle',
+          noCache: true,
+          activeMenu: '/example/list'
+        },
         hidden: true
       },
       {
@@ -223,7 +328,7 @@ export const asyncRoutes = [
   {
     path: '/error',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     name: 'ErrorPages',
     meta: {
       title: 'errorPages',
@@ -248,7 +353,6 @@ export const asyncRoutes = [
   {
     path: '/error-log',
     component: Layout,
-    redirect: 'noredirect',
     children: [
       {
         path: 'log',
@@ -301,6 +405,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/zip/download',
     alwaysShow: true,
+    name: 'Zip',
     meta: { title: 'zip', icon: 'zip' },
     children: [
       {
@@ -334,7 +439,6 @@ export const asyncRoutes = [
   {
     path: '/theme',
     component: Layout,
-    redirect: 'noredirect',
     children: [
       {
         path: 'index',
@@ -348,7 +452,6 @@ export const asyncRoutes = [
   {
     path: '/clipboard',
     component: Layout,
-    redirect: 'noredirect',
     children: [
       {
         path: 'index',
@@ -386,11 +489,12 @@ export const asyncRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 

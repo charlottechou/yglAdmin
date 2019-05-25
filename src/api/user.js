@@ -1,11 +1,25 @@
 import request from '@/utils/request'
 
-export function loginBy(data) {
-  alert('dddd')
+export function login(data) {
   return request({
-    url: '/api/Auth',
+    url: '/user/login',
     method: 'post',
     data
+  })
+}
+
+export function mlogin(data) {
+  return request({
+    url: '/api/auth',
+    method: 'post',
+    data
+  })
+}
+
+export function mGetInfo() {
+  return request({
+    url: '/api/Auth/user',
+    method: 'get'
   })
 }
 
@@ -23,4 +37,3 @@ export function logout() {
     method: 'post'
   })
 }
-

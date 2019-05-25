@@ -1,16 +1,16 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
 
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout';
+import Layout from '@/layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components';
-import chartsRouter from './modules/charts';
-import tableRouter from './modules/table';
-import nestedRouter from './modules/nested';
+import componentsRouter from './modules/components'
+import chartsRouter from './modules/charts'
+import tableRouter from './modules/table'
+import nestedRouter from './modules/nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
